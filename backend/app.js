@@ -79,4 +79,8 @@ app.use((err, _req, res, _next) => {
 	});
 });
 
+app.get("/hellotest", (req, res) => {
+	res.end("Hello");
+});
+
 module.exports = app;
