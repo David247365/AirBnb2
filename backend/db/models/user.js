@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 				validate: {
 					len: [2, 50],
+					notEmpty: true,
 				},
 			},
 			lastname: {
@@ -22,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 				validate: {
 					len: [2, 50],
+					notEmpty: true,
 				},
 			},
 			username: {
