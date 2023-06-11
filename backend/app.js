@@ -42,10 +42,6 @@ app.use(
 	})
 );
 
-app.get("/hello", (req, res) => {
-	res.end("Hello");
-});
-
 app.use(routes);
 
 // Catch unhandled requests and forward to error handler.
