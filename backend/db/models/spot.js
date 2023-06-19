@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
+			Spot.belongsTo(models.User, { foreignKey: "userId " });
+			Spot.hasMany(models.SpotImage, { foreignKey: "spotId" });
+			Spot.hasMany(models.Review, { foreignKey: "spotId" });
 		}
 	}
 	Spot.init(
@@ -24,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					notNull: { msg: "User ID is required" },
 					isInt: { msg: "User ID must be an integer" },
+				},
+				references: {
+					model: "User",
+					key: "id",
 				},
 			},
 			address: {
@@ -96,22 +103,6 @@ module.exports = (sequelize, DataTypes) => {
 				validate: {
 					notNull: { msg: "Price is required" },
 					isInt: { msg: "Price must be an integer" },
-				},
-			},
-			createdAt: {
-				type: DataTypes.DATE,
-				allowNull: false,
-				validate: {
-					notNull: { msg: "Created at is required" },
-					isDate: { msg: "Created at must be a valid date" },
-				},
-			},
-			updatedAt: {
-				type: DataTypes.DATE,
-				allowNull: false,
-				validate: {
-					notNull: { msg: "Updated at is required" },
-					isDate: { msg: "Updated at must be a valid date" },
 				},
 			},
 			avgRating: {
