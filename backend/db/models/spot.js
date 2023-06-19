@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
 					isInt: { msg: "User ID must be an integer" },
 				},
 				references: {
-					model: "User",
+					model: "Users",
 					key: "id",
 				},
 			},
