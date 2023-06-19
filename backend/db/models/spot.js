@@ -117,7 +117,7 @@ module.exports = (sequelize, DataTypes) => {
 					isDecimal: { msg: "Average rating must be a decimal number" },
 				},
 			},
-			previewImage: {
+			previewImg: {
 				type: DataTypes.STRING,
 				allowNull: true,
 				validate: {

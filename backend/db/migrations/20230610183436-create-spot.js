@@ -20,10 +20,6 @@ module.exports = {
 				userId: {
 					type: Sequelize.INTEGER,
 					allowNull: false,
-					references: {
-						model: "User",
-						key: "id",
-					},
 				},
 				address: {
 					type: Sequelize.STRING,

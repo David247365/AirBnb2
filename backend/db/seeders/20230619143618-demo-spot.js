@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === "production") {
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-	async up(queryInterface, Sequelize) {
+	up: async (queryInterface, Sequelize) => {
 		options.tableName = "Spots";
 		return queryInterface.bulkInsert(
 			options,
@@ -23,8 +23,8 @@ module.exports = {
 					name: "Spot 1",
 					description: "This is the first spot",
 					price: 100.0,
-					avgStarRating: 4.5,
-					preview_image: "https://www.google.com/",
+					avgRating: 4.5,
+					previewImg: "https://www.google.com/",
 				},
 				{
 					userId: 2,
@@ -37,8 +37,8 @@ module.exports = {
 					name: "Spot 2",
 					description: "This is the second spot",
 					price: 150.0,
-					avgStarRating: 4.0,
-					preview_image: "http://placekitten.com/200/300",
+					avgRating: 4.0,
+					previewImg: "http://placekitten.com/200/300",
 				},
 				{
 					userId: 1,
@@ -51,8 +51,8 @@ module.exports = {
 					name: "Spot 3",
 					description: "This is the third spot",
 					price: 200.0,
-					avgStarRating: 4.8,
-					preview_image: "https://www.twitter.com/",
+					avgRating: 4.8,
+					previewImg: "https://www.twitter.com/",
 				},
 			],
 			{}
@@ -76,6 +76,13 @@ module.exports = {
 		 * await queryInterface.bulkDelete('People', null, {});
 		 */
 		options.tableName = "Spots";
-		return queryInterface.bulkDelete(options, null, {});
+		const Op = Sequelize.Op;
+		return queryInterface.bulkDelete(
+			options,
+			{
+				name: { [Op.in]: ["Spot 1", "Spot 2", "Spot 3"] },
+			},
+			{}
+		);
 	},
 };
